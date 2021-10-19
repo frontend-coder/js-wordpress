@@ -31,7 +31,8 @@
 <body <?php  body_class(); ?>>
   <?php wp_body_open(); ?>
   <?php 
-$class_header = '';
+ global $jst_options;
+ $class_header = '';
 $style_header = '';
 if(is_page_template('template-home.php')) {
 $class_header = 'header-home';
@@ -49,37 +50,42 @@ $style_header = 'style="background: #fff url('. get_template_directory_uri() .'/
 
     <div class="heading">
       <ul class="social">
+        <?php $socials_link = $jst_options[global_sortable];
+foreach($socials_link as $social=> $link) {
+$icon_social = ''; 
+  $svg = '';
+  $class = '';
+  if($social == 'VK Link') {
+  $icon_social = '<span>Vk</span>'; 
+  $svg = '<svg  width="21" height="18"><use xlink:href="#vk"/></svg>'; 
+  $class = 'social__icon_vk';
+} elseif($social == 'FB Link') {
+  $icon_social = '<span>Fb</span>'; 
+   $svg = '<svg  width="14" height="17"><use xlink:href="#facebook"/></svg>'; 
+$class = 'social__icon_fb';
+  }
+elseif($social == 'TW Link') {
+  $icon_social = '<span>Tw</span>'; 
+ $svg = '<svg  width="18" height="15"><use xlink:href="#twitter"/></svg>'; 
+$class = 'social__icon_tw';
+}
+elseif($social == 'Instagram Link') {
+  $icon_social = '';
+  $class= 'social__icon_inst';
+ $svg = '<svg width="16" height="16"><use xlink:href="#instagram"/></svg>'; 
+}
+// если ссылки нет: одной или нескольких
+ if($link) { ?>
         <li class="social__item">
-          <span>Vk</span>
-          <a class="social__icon social__icon_vk" href="#">
-            <svg width="21" height="18">
-              <use xlink:href="#vk" />
-            </svg>
+          <?php echo $icon_social; ?>
+          <a class="social__icon <?php echo $class; ?>" target="_blank" href="<?php echo $link; ?>">
+            <?php echo $svg; ?>
           </a>
         </li>
-        <li class="social__item">
-          <span>Fb</span>
-          <a class="social__icon social__icon_fb" href="#">
-            <svg width="14" height="17">
-              <use xlink:href="#facebook" />
-            </svg>
-          </a>
-        </li>
-        <li class="social__item">
-          <span>Tw</span>
-          <a class="social__icon social__icon_tw" href="#">
-            <svg width="18" height="15">
-              <use xlink:href="#twitter" />
-            </svg>
-          </a>
-        </li>
-        <li class="social__item">
-          <a class="social__icon social__icon_inst" href="#">
-            <svg width="16" height="16">
-              <use xlink:href="#instagram" />
-            </svg>
-          </a>
-        </li>
+        <?php
+}
+}
+   ?>
       </ul>
       <div class="heading__block">
         <a href="cart.html" class="heading__bag">

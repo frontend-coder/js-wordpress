@@ -19,9 +19,13 @@
 ```
 wp_register_style( 'jst-vendor', get_template_directory_uri() .'/assets/css/vendor.min.css' , array('jst-mainstyle'),
 _S_VERSION );
+wp_register_script( 'jst-svgsprite', get_template_directory_uri() . '/assets/img/svg-sprite/svg-sprite.js', array(),
+_S_VERSION, false );
+
 
 if(is_page_template('template_home.php')) {
 wp_enqueue_style( 'jst-vendor' );
+wp_enqueue_script( 'jst-svgsprite' );
 }
 ```
 
