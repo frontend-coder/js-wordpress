@@ -47,12 +47,7 @@ if ( ! function_exists( 'jst_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus(
-			array(
-				'menu-1' => esc_html__( 'Primary', 'jst' ),
-			)
-		);
+	
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -121,36 +116,34 @@ add_action( 'after_setup_theme', 'jst_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function jst_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'jst' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'jst' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+
+
+
+require_once get_template_directory().'/personal-functions/menu-locations.php';
+require_once get_template_directory().'/personal-functions/widget-locations.php';
+require_once get_template_directory().'/personal-functions/scripts-locations.php';
+
+/* Повесить сlass на тег body   */
+add_filter('body_class', 'custom_class');
+
+function custom_class($classes) {
+if(is_page_template('template-home.php')) {
+$classes[] ="is_home";
+} else {
+	$classes[] ="inner_page";
 }
-add_action( 'widgets_init', 'jst_widgets_init' );
-
-/**
- * Enqueue scripts and styles.
- */
-function jst_scripts() {
-	wp_enqueue_style( 'jst-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'jst-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'jst-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+return $classes;
 }
-add_action( 'wp_enqueue_scripts', 'jst_scripts' );
 
+
+
+
+
+
+
+
+
+ 
 /**
  * Implement the Custom Header feature.
  */

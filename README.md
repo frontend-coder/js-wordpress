@@ -2,18 +2,30 @@
 
 Выполняю посадку шаблона, скачаного в интернете на WordPress + Woocommerce. Для меня это сложная работа, потому что я не просто создаю тему под WordPress, а и адаптирую тему под поддержку плагина Woocommerce.
 
-
 ## Необходимые плагины
 
-Classic Editor
-Cyr to Lat enhanced
-Query Monitor
-Show Current Template
-WooCommerce
+1. Classic Editor
+2. Cyr to Lat enhanced
+3. Query Monitor
+4. Show Current Template
+5. WooCommerce
 
 ## Стартовая тема
 
 Была создана стартовая тема с сайта https://underscores.me/ c поддержкой WooCommerce. 
+
+## Как подключить стили страницы, привязаные к определенному шаблону 
+
+```
+wp_register_style( 'jst-vendor', get_template_directory_uri() .'/assets/css/vendor.min.css' , array('jst-mainstyle'),
+_S_VERSION );
+
+if(is_page_template('template_home.php')) {
+wp_enqueue_style( 'jst-vendor' );
+}
+```
+
+
 
 
 
