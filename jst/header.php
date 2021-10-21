@@ -45,6 +45,7 @@ $style_header = 'style="background: #fff url('. get_template_directory_uri() .'/
   }
 
   ?>
+
   <!-- Header -->
   <header class="header <?php echo esc_attr( $class_header ); ?>" <?php echo $style_header; ?>>
 
@@ -128,7 +129,9 @@ elseif($social == 'Instagram Link') {
       </div>
 
       <div class="navigation__wrap">
-        <a href="#call" class="call popup-link-1">
+        <?php if ($jst_options[contact_phone]) { ?>
+        <a href="tel:<?php echo str_replace(array( " ", "(", ")", "-"), "", $jst_options[contact_phone]); ?>"
+          class="call popup-link-1">
           <div class="call__icon btn">
             <svg width="22" height="22">
               <use xlink:href="#phone-solid" />
@@ -136,10 +139,10 @@ elseif($social == 'Instagram Link') {
           </div>
           <div class="call__block">
             <p class="call__text">Заказать звонок</p>
-            <p class="call__number">+ 7 (495) 567-28-15</p>
+            <p class="call__number"><?php echo $jst_options[contact_phone]; ?></p>
           </div>
         </a>
-
+        <?php } ?>
         <!-- Main menu -->
         <nav id="nav-wrap" class="menu">
 

@@ -8,19 +8,60 @@
  *
  * @package jstheme
  */
-
+ global $jst_options;
 ?>
 
 <!-- Footer -->
 <footer class="footer">
+
   <div class="wrapper">
     <div class="footer__block">
+
       <a href="index.html" class="logo noise">
-        <p class="logo__icon">JC</p>
-        <p class="logo__desc">legal Advisory Services</p>
+        <p class="logo__icon"><?php bloginfo('name'); ?></p>
+        <p class="logo__desc"><?php bloginfo('description'); ?></p>
       </a>
       <ul class="social">
+        <?php $socials_link = $jst_options[global_sortable];
+           foreach($socials_link as $social=> $link) {
+          $icon_social = ''; 
+                   $svg = '';
+            $class = '';
+  if($social == 'VK Link') {
+  $icon_social = '<span>Vk</span>'; 
+  $svg = '<svg  width="21" height="18"><use xlink:href="#vk"/></svg>'; 
+  $class = 'social__icon_vk';
+} elseif($social == 'FB Link') {
+  $icon_social = '<span>Fb</span>'; 
+   $svg = '<svg  width="14" height="17"><use xlink:href="#facebook"/></svg>'; 
+$class = 'social__icon_fb';
+  }
+elseif($social == 'TW Link') {
+  $icon_social = '<span>Tw</span>'; 
+ $svg = '<svg  width="18" height="15"><use xlink:href="#twitter"/></svg>'; 
+$class = 'social__icon_tw';
+}
+elseif($social == 'Instagram Link') {
+  $icon_social = '';
+  $class= 'social__icon_inst';
+ $svg = '<svg width="16" height="16"><use xlink:href="#instagram"/></svg>'; 
+}
+// если ссылки нет: одной или нескольких
+ if($link) { ?>
         <li class="social__item">
+          <?php echo $icon_social; ?>
+          <a class="social__icon <?php echo $class; ?>" target="_blank" href="<?php echo $link; ?>">
+            <?php echo $svg; ?>
+          </a>
+        </li>
+        <?php
+}
+}
+   ?>
+
+
+
+        <!-- <li class="social__item">
           <span>Vk</span>
           <a class="social__icon social__icon_vk" href="#">
             <svg width="21" height="18">
@@ -51,21 +92,42 @@
             </svg>
           </a>
         </li>
+     -->
       </ul>
-      <p class="footer__special">Разработано специально для коучинга WAYUP</p>
+
+
+      <p class="footer__special">Разработка и сопровоздение сайтов </p>
     </div>
     <nav class="guide">
       <p class="guide__title">Карта сайта</p>
-      <ul>
+
+      <?php wp_nav_menu( array(
+  'theme_location' => 'menu-footer',
+  'menu_id' =>'nav_footer_one',
+  'menu_class' =>'nav_footer_two',
+)); ?>
+
+
+
+      <!-- <ul>
         <li class="active"><a href="#">Главная</a></li>
         <li><a href="index.html">О компании</a></li>
         <li><a href="cases.html">Кейсы</a></li>
         <li><a href="reviews.html">Отзывы</a></li>
         <li><a href="news.html">Новости</a></li>
-      </ul>
+      </ul> -->
     </nav>
     <div class="serv">
       <p class="serv__title">Услуги</p>
+      <?php wp_nav_menu( array(
+  'theme_location' => 'menu-footer-two',
+  'menu_id' =>'nav_footer_two',
+  'menu_class' =>'nav_footer_two',
+)); ?>
+
+
+
+      <!--       
       <ul>
         <li><a href="service.html">Корпоративная практика, M&A</a></li>
         <li><a href="service.html">Информационные технологии / TMT</a></li>
@@ -73,32 +135,52 @@
         <li><a href="service.html">Government <br>Relations</a></li>
         <li><a href="service.html">Интернет-бизнес и цифровая экономика</a></li>
         <li><a href="#">Коммерческая практика</a></li>
-      </ul>
+      </ul> -->
     </div>
     <div class="contact">
       <p class="contact__title">Контакты</p>
       <ul class="contact__list">
+        <?php $contact_adress = $jst_options['contact_adress'];
+          if ($contact_adress) { ?>
+
         <li class="contact__item">
           <svg width="20" height="25">
             <use xlink:href="#pin" />
           </svg>
-          <p class="contact__text contact__text_address">г. Москва, ул. Бутырская, 62
-            Z-Plaza, 5-й этаж</p>
+          <p class="contact__text contact__text_address"> <?php echo esc_attr( $contact_adress ); ?> </p>
         </li>
+        <?php } ?>
+
         <li class="contact__item">
           <svg width="21" height="21">
             <use xlink:href="#phone" />
           </svg>
           <div class="contact__phones">
-            <a href="#" class="contact__text contact__text_phone">+ 7 (495) 577-18-11</a>
-            <a href="#" class="contact__text contact__text_phone">+ 7 (495) 567-28-15</a>
+
+            <?php $footer_phones = $jst_options['footer-multitext'];
+foreach($footer_phones as $phone) {
+  if($phone) {
+  ?>
+            <a href="tel:<?php echo str_replace(array( " ", "(", ")", "-"), "", $phone); ?>"
+              class="contact__text contact__text_phone"><?php echo esc_attr( $phone) ; ?></a>
+            <?php }
+           } ?>
+
+
+
+
+
+
           </div>
         </li>
         <li class="contact__item">
           <svg width="25" height="19">
             <use xlink:href="#mail" />
           </svg>
-          <p class="contact__text contact__text_mail">JClegal@gmail.com</p>
+          <?php $contact_mail = $jst_options['contact_email_vslid'];
+          if ($contact_mail) { ?>
+          <p class="contact__text contact__text_mail"><?php echo esc_attr( $contact_mail); ?></p>
+          <?php } ?>
         </li>
       </ul>
     </div>
@@ -136,7 +218,13 @@
         </div>
       </div>
     </div>
-    <p class="footer__copy">©2007-2018 Все права защищены</p>
+
+    <?php $footer_editor_copyright = $jst_options['footer-editor-copyright'];
+          if ($footer_editor_copyright) { ?>
+
+    <div class="footer__copy"><?php echo $footer_editor_copyright;  ?></div>
+    <?php } ?>
+
   </div>
 </footer><!-- End footer -->
 <!-- #colophon -->

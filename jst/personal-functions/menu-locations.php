@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		register_nav_menus(
 			array(
 				'menu-1' => esc_html__( 'Primary', 'jst' ),
-				'menu-footer' => esc_html__( 'Footre Navigation', 'jst' ),
+				'menu-footer' => esc_html__( 'Footer Navigation One', 'jst' ),
+				'menu-footer-two' => esc_html__( 'Footer Navigation Two', 'jst' ),
 			)
 		);

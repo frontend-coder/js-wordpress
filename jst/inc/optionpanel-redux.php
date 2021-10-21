@@ -355,23 +355,96 @@ Redux::set_section(
 				),
 			),
 
-			array(
-				'id'       => 'global-example',
-				'type'     => 'text',
-				'title'    => esc_html__( 'Text Field', 'jst' ),
-				'subtitle' => esc_html__( 'Subtitle', 'jst' ),
-				'desc'     => esc_html__( 'Field Description', 'jst' ),
-				'default'  => 'Default Text',
-			),
-			
-
 		),
 	)
 );
 
 
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Contacts Info', 'jst' ),
+		'desc'             => esc_html__( 'Define a setting for the header of your site.', 'jst' ), 
+		'id'               => 'contscts-text',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+	array(
+				'id'       => 'contact_adress',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Contact adress', 'jst' ),
+				'subtitle' => esc_html__( 'Input your contact post adress.', 'jst' ),
+				'desc'     => esc_html__( 'This contact post adressdisplays into footer site.', 'jst' ),
+			),
+			array(
+				'id'       => 'contact_phone',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Phone numer', 'jst' ),
+				'subtitle' => esc_html__( 'Input your contact phone number.', 'jst' ),
+				'desc'     => esc_html__( 'This phone\'s number displays into header & footer site.', 'jst' ),
+			),
+
+					array(
+				'id'       => 'contact_email_vslid',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Contact Email', 'your-textdomain-here' ),
+				'subtitle' => esc_html__( 'Insert your contact email.', 'your-textdomain-here' ),
+				'desc'     => esc_html__( 'Insert your contact email.', 'your-textdomain-here' ),
+				'validate' => 'email',
+				'msg'      => 'Insert Email isnot correct!',
+				'default'  => '',
+			),
+
+						array(
+				'id'       => 'footer-multitext',
+				'type'     => 'multi_text',
+				'title'    => esc_html__( 'Insert phone number', 'jst' ),
+				'subtitle' => esc_html__( 'This phone number displays in the footer area', 'jst' ),
+				'desc'     => esc_html__( 'Choice and remove phone number', 'jst' ),
+			),
+					array(
+				'id'      => 'footer-editor-copyright',
+				'type'    => 'editor',
+				'title'   => esc_html__( 'Enter copyright text for site', 'jst' ),
+				'default' => '©2007-2018 Все права защищены',
+				'args'    => array(
+					'wpautop'       => false,
+					'media_buttons' => false,
+					'textarea_rows' => 5,
+					'teeny'         => false,
+					'quicktags'     => false,
+				),
+			),	
+
+		),
+	)
+);
+
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Header home', 'jst' ),
+		'desc'             => esc_html__( 'Option for header name option.', 'jst' ), 
+		'id'               => 'header_home',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+
+		array(
+				'id'           => 'headerslider_fone',
+				'type'         => 'media',
+				'url'          => true,
+				'title'        => esc_html__( 'Upload foto for slider fon', 'jst' ),
+				'compiler'     => 'true',
+				'desc'         => esc_html__( 'Basic size media must be 1920px X 998 px.', 'jst' ),
+				'subtitle'     => esc_html__( 'Upload any media using the WordPress native uploader', 'jst' ),
+				'preview_size' => 'full',
+			),
 
 
+		),
+	)
+);
 
 
 
