@@ -102,7 +102,7 @@ function jst_register_testimonial_post_type() {
  
 
  
-    register_post_type( 'testimonial', array(
+    register_post_type( 'recall', array(
         'labels'             => array(
         'name'                  => _x( 'Recalls', 'Post type general name', 'jst' ),
         'singular_name'         => _x( 'Recall', 'Post type singular name', 'jst' ),
