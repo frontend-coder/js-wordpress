@@ -440,6 +440,45 @@ Redux::set_section(
 				'subtitle'     => esc_html__( 'Upload any media using the WordPress native uploader', 'jst' ),
 				'preview_size' => 'full',
 			),
+				array(
+				'id'       => 'header_slider_title',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Title  video on the header site', 'jst' ),
+				'subtitle' => esc_html__( 'Enter duration video.', 'jst' ),
+				'desc'     => esc_html__( 'This duration of the video.', 'jst' ),
+			),
+	array(
+				'id'       => 'header_slider_Duration',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Duration video in the minute', 'jst' ),
+				'subtitle' => esc_html__( 'Enter duration video.', 'jst' ),
+				'desc'     => esc_html__( 'This duration of the video.', 'jst' ),
+			),
+	array(
+				'id'       => 'header_slider_urlvideo',
+				'type'     => 'text',
+				'title'    => esc_html__( 'URL youtube video', 'jst' ),
+				'subtitle' => esc_html__( 'Enter URL youtube video.', 'jst' ),
+				'desc'     => esc_html__( 'This is URL youtube video.', 'jst' ),
+			),
+
+				array(
+				'id'          => 'home_sliders',
+				'type'        => 'slides',
+				'title'       => esc_html__( 'Slides Options', 'your-textdomain-here' ),
+				'subtitle'    => esc_html__( 'Unlimited slides with drag and drop sortings.', 'your-textdomain-here' ),
+				'desc'        => esc_html__( 'This field will store all slides values into a multidimensional array to use into a foreach loop.', 'your-textdomain-here' ),
+				'placeholder' => array(
+					'title'       => esc_html__( 'This is a title', 'your-textdomain-here' ),
+					'description' => esc_html__( 'Description Here', 'your-textdomain-here' ),
+					'url'         => esc_html__( 'Give us a link!', 'your-textdomain-here' ),
+				),
+			),		
+
+
+
+
+
 
 
 		),

@@ -36,7 +36,7 @@
 $style_header = '';
 if(is_page_template('template-home.php')) {
 $class_header = 'header-home';
-$style_header = 'style="background: #fff url('. get_template_directory_uri() .'/assets/img/bg.jpg) no-repeat
+$style_header = 'style="background: #fff url('. $jst_options['headerslider_fone']['url'] .') no-repeat
   center top/ cover;"';
   } else {
   $class_header = 'header-inner';
@@ -198,49 +198,51 @@ elseif($social == 'Instagram Link') {
     <div class="offer">
       <div class="wrapper">
         <div class="offer__slider">
+          <?php $homeSliders = $jst_options['home_sliders'];
+          
+        //  print_r($homeSliders);
+          
+          foreach($homeSliders as $homeSlider) { ?>
           <div class="offer__slide">
-            <p class="offer__text">Вы хотите изменить мир.</p>
-            <h1 class="offer__title">Мы хотим вам помочь.</h1>
-            <p class="offer__descr">Мы современная Юридическая фирма,<br> помогающая перспективным стартапам,
-              фрилансерам и малому бизнесу.</p>
-            <a href=contacts.html#callback" class="offer__btn btn popup-link">Бесплатная консультация</a>
+            <p class="offer__text"> <?php echo $homeSlider['title']; ?></p>
+            <?php echo $homeSlider['description']; ?>
+            <a href="<?php echo $homeSlider['url']; ?>" class="offer__btn btn popup-link">
+              <?php esc_html_e(' Бесплатная консультация ', 'jst'); ?> </a>
           </div>
-          <div class="offer__slide">
-            <p class="offer__text">Вы хотите изменить мир.</p>
-            <h1 class="offer__title">Мы хотим вам помочь.</h1>
-            <p class="offer__descr">Юристы JC проведут вас и вашу компанию через многочисленные юридические проблемы,
-              стоящие перед компаниями Москвы сегодня.</p>
-            <a href="contacts.html#callback" class="offer__btn btn popup-link">Бесплатная консультация</a>
-          </div>
-          <div class="offer__slide">
-            <p class="offer__text">Вы хотите изменить мир.</p>
-            <h1 class="offer__title">Мы хотим вам помочь.</h1>
-            <p class="offer__descr">Мы предпочитаем обсуждать проблемы и решения, а не участвовать в теоретических
-              юридических дебатах, которые никогда не заканчиваются.</p>
-            <a href="contacts.html#callback" class="offer__btn btn">Бесплатная консультация</a>
-          </div>
-        </div>
+          <?php } ?>
 
-        <a class="offer__video popup-with-zoom-anim popup-youtube" href="https://www.youtube.com/watch?v=FWxRRbnwRf0"
+        </div>
+        <?php $header_slider_urlvideo = esc_url($jst_options['header_slider_urlvideo'] );
+        if($header_slider_urlvideo) {
+        ?>
+        <a class="offer__video popup-with-zoom-anim popup-youtube" href="<?php echo $header_slider_urlvideo;  ?>"
           rel="nofollow">
-          <p class="offer__time">1:30</p>
+          <?php } ?>
+          <?php $header_slider_duration = esc_url($jst_options['header_slider_Duration'] );
+        $header_slider_title = esc_attr($jst_options['header_slider_title'] );
+          if($header_slider_duration || $header_slider_title) {
+          ?>
+          <p class="offer__time"><?php echo $header_slider_duration; ?></p>
           <div class="offer__play"></div>
-          <p class="offer__watch">Посмотрите короткое видео о нашей компании</p>
+          <p class="offer__watch"><?php echo $header_slider_title; ?></p>
+          <?php } ?>
         </a>
       </div>
     </div>
     <?php } else { ?>
     <div class="caption">
       <div class="wrapper">
-        <h1 class="caption__title">Заголовок страницы</h1>
-        <div class="caption__bc">
-          <span>
+        <h1 class="caption__title"><?php echo wp_title(''); ?></h1> <!--  // заголовок страницы -->
+
+        <?php echo jst_get_breadcrumbs(); ?>
+        <!-- <div class="caption__bc">
+           <span>
             <a href="index.html">Главная</a>
           </span>
           <span class="sep">/</span>
-          <span class="current">Контакты</span>
-        </div>
+          <span class="current">Контакты</span> -->
       </div>
+    </div>
     </div>
     <?php } ?>
 

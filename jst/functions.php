@@ -122,6 +122,7 @@ add_action( 'after_setup_theme', 'jst_content_width', 0 );
 require_once get_template_directory().'/personal-functions/menu-locations.php';
 require_once get_template_directory().'/personal-functions/widget-locations.php';
 require_once get_template_directory().'/personal-functions/scripts-locations.php';
+require_once get_template_directory().'/personal-functions/breadcrumbs.php';
 
 /* Повесить сlass на тег body   */
 add_filter('body_class', 'custom_class');
