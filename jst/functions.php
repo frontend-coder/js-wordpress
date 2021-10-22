@@ -123,6 +123,7 @@ require_once get_template_directory().'/personal-functions/menu-locations.php';
 require_once get_template_directory().'/personal-functions/widget-locations.php';
 require_once get_template_directory().'/personal-functions/scripts-locations.php';
 require_once get_template_directory().'/personal-functions/breadcrumbs.php';
+require_once get_template_directory().'/personal-functions/register-post-type.php';
 
 /* Повесить сlass на тег body   */
 add_filter('body_class', 'custom_class');

@@ -26,7 +26,7 @@ function jst_get_breadcrumbs() {
     $after          = '</span>';
 
     global $post;
-    $home_link    = home_url('/');
+    $home_link    = home_url('/'); 
     $link_before  = '<span typeof="v:Breadcrumb">';
     $link_after   = '</span>';
     $link_attr    = ' rel="v:url" property="v:title"';
