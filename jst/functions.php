@@ -46,8 +46,8 @@ if ( ! function_exists( 'jst_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
-
-	
+		
+		add_image_size( 'recall-thumb', 225, 231, true );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -119,11 +119,17 @@ add_action( 'after_setup_theme', 'jst_content_width', 0 );
 
 
 
+require_once get_template_directory().'/personal-functions/metaboxes.php';
+require_once get_template_directory().'/personal-functions/add_metabox.php';
+
+
+
 require_once get_template_directory().'/personal-functions/menu-locations.php';
 require_once get_template_directory().'/personal-functions/widget-locations.php';
 require_once get_template_directory().'/personal-functions/scripts-locations.php';
 require_once get_template_directory().'/personal-functions/breadcrumbs.php';
 require_once get_template_directory().'/personal-functions/register-post-type.php';
+require_once get_template_directory().'/personal-functions/seo-options.php';
 
 /* Повесить сlass на тег body   */
 add_filter('body_class', 'custom_class');

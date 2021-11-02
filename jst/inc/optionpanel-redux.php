@@ -474,20 +474,67 @@ Redux::set_section(
 					'url'         => esc_html__( 'Give us a link!', 'your-textdomain-here' ),
 				),
 			),		
-
-
-
-
-
-
-
 		),
 	)
 );
 
 
 
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Custom Post Type', 'jst' ),
+		'id'               => 'custom-posttype',
+		'desc'             => esc_html__( 'Options for Custom Post Type', 'jst' ),
+		'customizer_width' => '400px',
+		'icon'             => 'el el-home',
+	)
+);
 
+
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Recall Options', 'jst' ),
+		'desc'             => esc_html__( 'Enter title for Define a setting for the header of your site.', 'jst' ), 
+		'id'               => 'custom_for',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+
+			array(
+				'id'       => 'custom_recall_title',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Recall Page Title', 'jst' ),
+				'subtitle' => esc_html__( 'Define the placement of the referenced block by dragging and dropping the blocks.', 'jst' ),
+				'desc'     => esc_html__( 'Let the field empty if you don\'t have a link of social network.', 'jst' ),
+			),
+						array(
+				'id'       => 'custom_recall_descr',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Recall Page Description', 'jst' ),
+				'subtitle' => esc_html__( 'Enter Recall Page Description.', 'jst' ),
+				'desc'     => esc_html__( 'Enter Recall Page Description.', 'jst' ),
+			),
+						array(
+				'id'       => 'custom_recall_on_page',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Recall count of posts per page', 'jst' ),
+				'default'  => '6'
+			),
+
+			array(
+				'id'       => 'custom_recall_shotcod_form',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Enter CF7 shortcode', 'jst' ),
+			),
+
+
+
+			
+		),
+	)
+);
 
 
 
