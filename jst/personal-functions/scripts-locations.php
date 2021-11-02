@@ -45,5 +45,12 @@ function jst_add_scripts($hook) {
 add_action( 'admin_enqueue_scripts', 'jst_add_scripts', 10 );
 
 
+// возвращает данные по полученным ID картинки
+function jst_get_attachment($attachment_id) {
 
+	$attachment = get_post( $attachment_id );
+return array(
+	'description' => $attachment->post_content,
+);
 
+}

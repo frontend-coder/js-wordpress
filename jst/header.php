@@ -232,7 +232,23 @@ elseif($social == 'Instagram Link') {
     <?php } else { ?>
     <div class="caption">
       <div class="wrapper">
-        <h1 class="caption__title"><?php echo wp_title(''); ?></h1> <!--  // заголовок страницы -->
+        <h1 class="caption__title">
+          <?php
+        
+         if( is_single() ) {
+
+         $currentPostType = get_post_type( get_the_ID() );
+         // echo $currentPostType;
+          $postTypeObject = get_post_type_object($currentPostType);
+        //  print_r($postTypeObject);
+        echo $postTypeObject->labels->singular_name;
+         } else {
+           echo wp_title(''); 
+
+         }
+        
+        ?>
+        </h1> <!--  // заголовок страницы -->
 
         <?php echo jst_get_breadcrumbs(); ?>
         <!-- <div class="caption__bc">

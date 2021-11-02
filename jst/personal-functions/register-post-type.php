@@ -153,7 +153,7 @@ add_action( 'init', 'jst_register_testimonial_post_type' );
 
 
 function jst_posts_per_archivepage( $query ) {
-    global $jst_options;
+global $jst_options;
 $posts_per_page_recall = -1  ;
 if ( $jst_options['custom_recall_on_page']) {
    $posts_per_page_recall = $jst_options['custom_recall_on_page'];

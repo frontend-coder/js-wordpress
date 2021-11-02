@@ -48,6 +48,8 @@ if ( ! function_exists( 'jst_setup' ) ) :
 		add_theme_support( 'post-thumbnails' );
 		
 		add_image_size( 'recall-thumb', 225, 231, true );
+		add_image_size( 'service-thumb', 1170, 635, true );
+		add_image_size( 'case-thumb', 438, 455, true );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
