@@ -3,19 +3,6 @@ get_header();
 global $jst_options;
 ?>
 
-<?php
-		if ( have_posts() ) :
-			while ( have_posts() ) : 	the_post();
-				get_template_part( 'template-parts/content', get_post_type() );
-			endwhile;
-			the_posts_navigation();
-		else :
-			echo "Нет услуг на на сайте ";
-		endif;
-		?>
-
-
-
 <!-- Services -->
 <section class="inner services tabs">
   <div class="wrapper">
@@ -26,166 +13,84 @@ global $jst_options;
         юридической основы, и мы поможем вам на каждом этапе</p>
       <!-- Cases titles -->
       <ul class="tabs__caption">
-        <li class="active">Стартапы</li>
+        <?php $service_type = get_terms( array(
+				'taxonomy' => 'service-type',
+				'hide_empty' => true,
+			) ); 
+		//  	print_r($service_type);
+		$i = 0;
+		$active ='';		
+			foreach($service_type as $type) {
+			if($i == 0) {$active = 'active';} else {  $active = ''; }
+				echo '<li class="'. $active . '">'. $type->name .'</li>';
+				$i++; 
+			}
+			?>
+
+        <!-- <li class="active">Стартапы</li>
         <li>Фриланс</li>
-        <li>Малый бизнес</li>
+        <li>Малый бизнес</li> -->
       </ul>
 
     </div>
 
     <!-- Cases content one-->
-    <div class="tabs__content active">
+    <?php
+		$j = 0;
+		$current = 0;
+		foreach($service_type as $category) { 
+			if($j == 0) {$current = 'active';} else {  $current = ''; }
+			?>
+    <div class="tabs__content <?php echo esc_attr( $current ); ?>">
       <ul class="services__list">
-        <li class="services__item services__item_stat">
-          <h3 class="services__heading">Корпоративная практика, M&A</h3>
-          <p class="services__descr">Услуги в области корпоративного управления, рынков капитала, M&A</p>
-          <p class="services__price">$350</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_stat"></div>
-        </li>
-        <li class="services__item services__item_idea">
-          <h3 class="services__heading">Интеллектуальная собственность</h3>
-          <p class="services__descr">Весь спектр услуг в сфере интеллектуальной собственности</p>
-          <p class="services__price">$390</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_idea"></div>
-        </li>
-        <li class="services__item services__item_internet">
-          <h3 class="services__heading">Интернет-бизнес и цифровая экономика</h3>
-          <p class="services__descr">Весь спектр юридических услуг по сопровождению интернет – проектов</p>
-          <p class="services__price">$480</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_internet"></div>
-        </li>
-        <li class="services__item services__item_info">
-          <h3 class="services__heading">Информационные технологии / ТМТ</h3>
-          <p class="services__descr">Комплексная юридическая поддержка бизнеса в сфере связи, медиа, рекламы</p>
-          <p class="services__price">$525</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_info"></div>
-        </li>
-        <li class="services__item services__item_busy">
-          <h3 class="services__heading">Government <br>Relations</h3>
-          <p class="services__descr">Решение вопросов, связанных с регулированием бизнеса</p>
-          <p class="services__price">$345</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_busy"></div>
-        </li>
-        <li class="services__item services__item_target">
-          <h3 class="services__heading">Коммерческая практика</h3>
-          <p class="services__descr">Услуги по комплексному юридическому сопровождению бизнеса</p>
-          <p class="services__price">$410</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_target"></div>
-        </li>
-      </ul>
-    </div><!-- End cases content one-->
+        <?php  
+        // Вытягивание из переменной категори(масив) переменную slug
+        $servicesmy = new WP_Query( array(
+        'post_type' => 'service',
+        'posts_per_page' => -1,
+        'tax_query' => array(
+          array(
+            'taxonomy' => 'service-type',
+            'field' => 'slug',
+            'terms' => $category->slug ,
+          ),
+        ),
+        ));
+        if( $servicesmy->have_posts() ) :
+          while(  $servicesmy->have_posts() ) :  $servicesmy->the_post(); ?>
 
-    <div class="tabs__content">
-      <ul class="services__list">
-        <li class="services__item services__item_stat">
-          <h3 class="services__heading">Корпоративная практика, M&A</h3>
-          <p class="services__descr">Услуги в области корпоративного управления, рынков капитала, M&A</p>
-          <p class="services__price">$350</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_stat"></div>
+        <?php
+         $jst_service_fonitems = '';
+         if(get_metadata('post', get_the_ID(), 'jst_service_fonitemss', true)) {
+           $jst_service_fonitems = get_metadata('post', get_the_ID(), 'jst_service_fonitemss', true);
+          } else {
+           $jst_service_fonitems = 'stat'; 
+          } ?>
+        <li class="services__item services__item_<?php echo $jst_service_fonitems; ?>">
+          <h3 class="services__heading"><?php the_title(); ?></h3>
+          <p class="services__descr"><?php the_excerpt(); ?></p>
+          <?php $jst_service_price = get_metadata('post', get_the_ID(), 'jst_service_price', true); 
+        if($jst_service_price) { ?>
+          <p class="services__price">$<?php echo $jst_service_price;  ?></p>
+          <?php } ?>
+          <a href="<?php the_permalink(); ?>" class="services__order btn">Подробнее</a>
+
+
+          <div class="services__bg services__bg_<?php echo $jst_service_fonitems; ?>"></div>
+
         </li>
-        <li class="services__item services__item_idea">
-          <h3 class="services__heading">Интеллектуальная собственность</h3>
-          <p class="services__descr">Весь спектр услуг в сфере интеллектуальной собственности</p>
-          <p class="services__price">$390</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_idea"></div>
-        </li>
-        <li class="services__item services__item_internet">
-          <h3 class="services__heading">Интернет-бизнес и цифровая экономика</h3>
-          <p class="services__descr">Весь спектр юридических услуг по сопровождению интернет – проектов</p>
-          <p class="services__price">$480</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_internet"></div>
-        </li>
-        <li class="services__item services__item_info">
-          <h3 class="services__heading">Информационные технологии / ТМТ</h3>
-          <p class="services__descr">Комплексная юридическая поддержка бизнеса в сфере связи, медиа, рекламы</p>
-          <p class="services__price">$525</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_info"></div>
-        </li>
-        <li class="services__item services__item_busy">
-          <h3 class="services__heading">Government <br>Relations</h3>
-          <p class="services__descr">Решение вопросов, связанных с регулированием бизнеса</p>
-          <p class="services__price">$345</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_busy"></div>
-        </li>
-        <li class="services__item services__item_target">
-          <h3 class="services__heading">Коммерческая практика</h3>
-          <p class="services__descr">Услуги по комплексному юридическому сопровождению бизнеса</p>
-          <p class="services__price">$410</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_target"></div>
-        </li>
+        <?php endwhile;
+        wp_reset_postdata();
+        endif;
+        ?>
       </ul>
     </div>
-
-    <div class="tabs__content">
-      <ul class="services__list">
-        <li class="services__item services__item_stat">
-          <h3 class="services__heading">Корпоративная практика, M&A</h3>
-          <p class="services__descr">Услуги в области корпоративного управления, рынков капитала, M&A</p>
-          <p class="services__price">$350</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_stat"></div>
-        </li>
-        <li class="services__item services__item_idea">
-          <h3 class="services__heading">Интеллектуальная собственность</h3>
-          <p class="services__descr">Весь спектр услуг в сфере интеллектуальной собственности</p>
-          <p class="services__price">$390</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_idea"></div>
-        </li>
-        <li class="services__item services__item_internet">
-          <h3 class="services__heading">Интернет-бизнес и цифровая экономика</h3>
-          <p class="services__descr">Весь спектр юридических услуг по сопровождению интернет – проектов</p>
-          <p class="services__price">$480</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_internet"></div>
-        </li>
-        <li class="services__item services__item_info">
-          <h3 class="services__heading">Информационные технологии / ТМТ</h3>
-          <p class="services__descr">Комплексная юридическая поддержка бизнеса в сфере связи, медиа, рекламы</p>
-          <p class="services__price">$525</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_info"></div>
-        </li>
-        <li class="services__item services__item_busy">
-          <h3 class="services__heading">Government <br>Relations</h3>
-          <p class="services__descr">Решение вопросов, связанных с регулированием бизнеса</p>
-          <p class="services__price">$345</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_busy"></div>
-        </li>
-        <li class="services__item services__item_target">
-          <h3 class="services__heading">Коммерческая практика</h3>
-          <p class="services__descr">Услуги по комплексному юридическому сопровождению бизнеса</p>
-          <p class="services__price">$410</p>
-          <a href="service.html" class="services__order btn">Подробнее</a>
-          <div class="services__bg services__bg_target"></div>
-        </li>
-      </ul>
-    </div>
+    <?php
+		$j++;					
+		}	?>
+    <!-- End cases content one-->
   </div>
-
 </section><!-- End services -->
-
-
-
-
-
-
-
-
-
 
 <?php
 get_footer();

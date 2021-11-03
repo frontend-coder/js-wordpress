@@ -42,9 +42,9 @@ if( isset($_GET['title']) ) {
           <span class="inner__price">$<?php echo $cost; ?></span>
         </div>
 
-        <?php $jst_order_form = get_metadata('post  ', get_the_ID(), 'jst_order_service_form', true); 
+        <?php $jst_order_form = get_metadata('post', get_the_ID(), 'jst_order_service_form', true); 
         if($jst_order_form) {
-echo do_shortcode($jst_order_form);
+          echo do_shortcode($jst_order_form);
         }
         ?>
 

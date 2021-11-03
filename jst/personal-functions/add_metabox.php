@@ -59,6 +59,20 @@ function  jst_metaboxes($meta_boxes) {
                 'id'   => $prefix . 'service_price',
                 'type' => 'text',
             ),
+             array(
+                'name' => 'Фоновое изображение',
+                'desc' => 'Выберите фоновое изображение',
+                'id'   => $prefix . 'service_fonitemss',
+                'type' => 'select',
+                'options' => array(
+                    array('name' => 'Стиль статистика', 'value' => 'stat'),
+                    array('name' => 'Стиль идея', 'value' => 'idea'),
+                    array('name' => 'Стиль интернет', 'value' => 'internet'),
+                    array('name' => 'Стиль информация', 'value' => 'info'),
+                    array('name' => 'Стиль деловой', 'value' => 'busy'),
+                    array('name' => 'Стиль цель', 'value' => 'target'),
+                )
+            ),
         )
     );
 

@@ -139,7 +139,11 @@ add_filter('body_class', 'custom_class');
 function custom_class($classes) {
 if(is_page_template('template-home.php')) {
 $classes[] ="is_home";
-} else {
+}
+ elseif(is_post_type_archive('service')) {
+$classes[] ="inner-page";
+} 
+else {
 	$classes[] ="inner_page";
 }
 return $classes;

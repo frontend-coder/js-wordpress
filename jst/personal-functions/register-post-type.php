@@ -99,15 +99,24 @@ function jst_register_testimonial_post_type() {
      'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt'  ),
     ) );
 
- 
+ 	// Добавляем древовидную таксономию 'genre' (как категории)
+	register_taxonomy(
+        'service-type',
+        array('service'),
+		array(
+            'label'            => __('Service type'), 
+            'rewrite'       => array( 'slug' => 'service-type' ), // свой слаг в URL
+            'hierarchical'  => true,
+        )
+	);
 
  
     register_post_type( 'recall', array(
         'labels'             => array(
-        'name'                  => _x( 'Recalls', 'Post type general name', 'jst' ),
-        'singular_name'         => _x( 'Recall', 'Post type singular name', 'jst' ),
-        'menu_name'             => _x( 'Recalls', 'Admin Menu text', 'jst' ),
-        'name_admin_bar'        => _x( 'Recalls', 'Add New on Toolbar', 'jst' ),
+        'name'                  => _x( 'Recalls', 'jst' ),
+        'singular_name'         => _x( 'Recall', 'jst' ),
+        'menu_name'             => _x( 'Recalls', 'jst' ),
+        'name_admin_bar'        => _x( 'Recalls', 'jst' ),
         'add_new'               => __( 'Add New Recall', 'jst' ),
         'add_new_item'          => __( 'Add New Recall', 'jst' ),
         'new_item'              => __( 'New Recall', 'jst' ),
