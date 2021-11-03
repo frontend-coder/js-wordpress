@@ -51,6 +51,7 @@ if ( ! function_exists( 'jst_setup' ) ) :
 		add_image_size( 'service-thumb', 1170, 635, true );
 		add_image_size( 'case-thumb', 438, 455, true );
 		add_image_size( 'news-thumb', 1920, 740, true );
+		add_image_size( 'litlenews-thumb', 733, 9999, false );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -145,7 +146,7 @@ $classes[] ="is_home";
 $classes[] ="inner-page";
 } 
 else {
-	$classes[] ="inner_page";
+	$classes[] ="inner-page";
 }
 return $classes;
 }
