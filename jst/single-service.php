@@ -3,12 +3,9 @@ get_header();
 global $jst_options;
 ?>
 
-
 <!-- Service -->
 <section class="inner service">
   <div class="wrapper">
-
-
 
     <?php
 		while ( have_posts() ) :
@@ -51,7 +48,6 @@ global $jst_options;
       </div>
     </div>
 
-
     <!--
     // If comments are open or we have at least one comment, load up the comment template.
     // if ( comments_open() || get_comments_number() ) :
@@ -61,17 +57,6 @@ global $jst_options;
     <?php
 		endwhile; // End of the loop.
 		?>
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Slider -->
     <div class="cases">
@@ -110,36 +95,11 @@ $cases = new WP_Query( array(
     wp_reset_postdata();
 		endif;
 		?>
-
-
       </div>
     </div>
 
   </div>
 </section><!-- End slider -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 get_footer();
 ?>

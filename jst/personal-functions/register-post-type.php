@@ -9,6 +9,62 @@ function jst_register_testimonial_post_type() {
 
 
  
+    register_post_type( 'news', array(
+        'labels'             => array(
+        'name'                  => _x( 'Новости', 'jst' ),
+        'singular_name'         => _x( 'Новость', 'jst' ),
+        'menu_name'             => _x( 'Новости', 'jst' ),
+        'name_admin_bar'        => _x( 'Новости',  'jst' ),
+        'add_new'               => __( 'Add New Новость', 'jst' ),
+        'add_new_item'          => __( 'Add New СНовость', 'jst' ),
+        'new_item'              => __( 'New Новость', 'jst' ),
+        'edit_item'             => __( 'Edit Новость', 'jst' ),
+        'view_item'             => __( 'View Новость', 'jst' ),
+        'all_items'             => __( 'All Новости', 'jst' ),
+        'search_items'          => __( 'Search Новость', 'jst' ),
+        'parent_item_colon'     => __( 'Parent Новости:', 'jst' ),
+        'not_found'             => __( 'No Новости found.', 'jst' ),
+        'not_found_in_trash'    => __( 'No Новости found in Trash.', 'jst' ),
+        'featured_image'        => _x( 'Seе Cover Image for Новости', 'jst' ),
+        'set_featured_image'    => _x( 'Set cover image for Новости', 'jst' ),
+        'remove_featured_image' => _x( 'Remove cover image for Новости', 'jst' ),
+        'use_featured_image'    => _x( 'Use as cover image for Новости', 'jst' ),
+        'archives'              => _x( 'Testimonial archives for Новостей',  'jst' ),
+        'insert_into_item'      => _x( 'Insert into Новость', 'jst' ),
+        'uploaded_to_this_item' => _x( 'Uploaded to this Новости', 'jst' ),
+        'filter_items_list'     => _x( 'Filter Новость list', 'jst' ),
+        'items_list_navigation' => _x( 'Новости list navigation', 'jst' ),
+        'items_list'            => _x( 'Новости list', 'jst' ),
+    ),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'news' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 8,
+        'show_in_admin_bar'  => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'exclude_from_search'   => false,
+     'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt'  ),
+    ) );
+
+// Добавляем древовидную таксономию 'genre' (как категории)
+	register_taxonomy(
+        'news-category',
+        array('news'),
+		array(
+            'label'         => esc_html__('News category'), 
+            'rewrite'       => array( 'slug' => 'news-category' ), // свой слаг в URL
+            'hierarchical'  => true,
+        )
+	);
+
+ 
     register_post_type( 'cases', array(
         'labels'             => array(
         'name'                  => _x( 'Сases', 'jst' ),
@@ -104,7 +160,7 @@ function jst_register_testimonial_post_type() {
         'service-type',
         array('service'),
 		array(
-            'label'            => __('Service type'), 
+            'label'            => esc_html__('Service type'), 
             'rewrite'       => array( 'slug' => 'service-type' ), // свой слаг в URL
             'hierarchical'  => true,
         )

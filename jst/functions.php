@@ -50,6 +50,7 @@ if ( ! function_exists( 'jst_setup' ) ) :
 		add_image_size( 'recall-thumb', 225, 231, true );
 		add_image_size( 'service-thumb', 1170, 635, true );
 		add_image_size( 'case-thumb', 438, 455, true );
+		add_image_size( 'news-thumb', 1920, 740, true );
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -193,3 +194,39 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 require get_template_directory() . '/inc/optionpanel-redux.php';
+
+// Отключаем Гутенберг в настройке Виджетов
+add_filter( 'gutenberg_use_widgets_block_editor', '__return_false', 100 );
+add_filter( 'use_widgets_block_editor', '__return_false' );
+
+
+/**
+ * Get link/code for sharing
+ * 
+ * @param string $type
+ * @return string
+ */
+function jst_get_share($type = 'fb', $permalink = false, $title = false) {
+    if (!$permalink) {
+        $permalink = get_permalink();
+    }
+    if (!$title) {
+        $title = get_the_title();
+    }
+    switch ($type) {
+        case 'twi':
+            return 'http://twitter.com/home?status=' . $title . '+-+' . $permalink;
+            break;
+        case 'fb':
+            return 'http://www.facebook.com/sharer.php?u=' . $permalink . '&t=' . $title;
+            break;
+        case 'vk':
+            return 'http://vk.com/share.php?url=' . $permalink . '&title='.$title . '&comment=';  //. get_the_content();
+            break;
+        // case 'pin':
+        //     return 'http://pinterest.com/pin/create/button/?url=' . $permalink;
+        //     break;
+          default:
+            return '';
+    }
+}

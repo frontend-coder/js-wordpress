@@ -4940,13 +4940,13 @@ button {
   opacity: .7;
 }
 
-.event__nav li:first-child {
+.event__nav li.prev {
   position: relative;
   padding-left: 10px;
   margin-left: 0;
 }
 
-.event__nav li:first-child:before {
+.event__nav li.prev:before {
   content: '';
   display: block;
   position: absolute;
@@ -4960,13 +4960,13 @@ button {
   transform: scale(-1, 1);
 }
 
-.event__nav li:last-child {
+.event__nav li.next {
   text-align: right;
   position: relative;
   padding-right: 10px;
 }
 
-.event__nav li:last-child:after {
+.event__nav li.next:after {
   content: '';
   display: block;
   position: absolute;
