@@ -7,7 +7,11 @@ get_header();
 <section class="inner events">
   <div class="wrapper">
     <div class="news">
-      <h2 class="news__title secondary-title"><span>Актуальные</span><br>новости</h2>
+      <h2 class="news__title secondary-title"><span>Категория</span><br>
+        <?php echo single_term_title(); ?></h2>
+
+
+
       <?php
   $pageds =(get_query_var('paged')) ? get_query_var('paged') : 1;
 

@@ -509,14 +509,14 @@ Redux::set_section(
 				'subtitle' => esc_html__( 'Define the placement of the referenced block by dragging and dropping the blocks.', 'jst' ),
 				'desc'     => esc_html__( 'Let the field empty if you don\'t have a link of social network.', 'jst' ),
 			),
-						array(
+			array(
 				'id'       => 'custom_recall_descr',
 				'type'     => 'text',
 				'title'    => esc_html__( 'Recall Page Description', 'jst' ),
 				'subtitle' => esc_html__( 'Enter Recall Page Description.', 'jst' ),
 				'desc'     => esc_html__( 'Enter Recall Page Description.', 'jst' ),
 			),
-						array(
+			array(
 				'id'       => 'custom_recall_on_page',
 				'type'     => 'text',
 				'title'    => esc_html__( 'Recall count of posts per page', 'jst' ),
@@ -528,16 +528,32 @@ Redux::set_section(
 				'type'     => 'text',
 				'title'    => esc_html__( 'Enter CF7 shortcode', 'jst' ),
 			),
-
-
-
-			
 		),
 	)
 );
 
 
 
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'News Options', 'jst' ),
+		'desc'             => esc_html__( 'Enter title for Define a setting for the header of your site.', 'jst' ), 
+		'id'               => 'custom_for_news',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+
+			array(
+				'id'       => 'custom_news_per_page',
+				'type'     => 'text',
+				'title'    => esc_html__( 'News count blocks per one page', 'jst' ),
+				'default'  => '6'
+			),
+	
+		),
+	)
+);
 
 
 

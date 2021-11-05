@@ -235,15 +235,21 @@ elseif($social == 'Instagram Link') {
         <h1 class="caption__title">
           <?php
         
-         if( is_single() ) {
+         if( is_single() ) {   
 
          $currentPostType = get_post_type( get_the_ID() );
          // echo $currentPostType;
           $postTypeObject = get_post_type_object($currentPostType);
         //  print_r($postTypeObject);
         echo $postTypeObject->labels->singular_name;
+         } elseif( is_tax() ) {
+           $currentPostType = get_post_type( get_the_ID() );
+         // echo $currentPostType;
+          $postTypeObject = get_post_type_object($currentPostType);
+        //  print_r($postTypeObject);
+        echo $postTypeObject->labels->name;
          } else {
-           echo wp_title(''); 
+          echo wp_title(''); 
 
          }
         
