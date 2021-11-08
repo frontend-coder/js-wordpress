@@ -1,5 +1,6 @@
 <?php
 get_header();
+global $wp_query;
 ?>
 
 
@@ -7,21 +8,13 @@ get_header();
 <section class="inner events">
   <div class="wrapper">
     <div class="news">
-      <h2 class="news__title secondary-title"><span>Категория</span><br>
-        <?php echo single_term_title(); ?></h2>
-
-
-
+      <h2 class="news__title secondary-title"><span>Категория</span>
+        <br><?php echo single_term_title(); ?>
+      </h2>
       <?php
-  $pageds =(get_query_var('paged')) ? get_query_var('paged') : 1;
 
-$newsposts = new WP_Query( array(
-  'post_type' => 'news',
-  'paged' => $pageds 
-));
-
-		if ($newsposts->have_posts() ) :
-			while ($newsposts->have_posts() ) : $newsposts->the_post(); ?>
+		if (have_posts() ) :
+			while (have_posts() ) : the_post(); ?>
       <!-- One new -->
       <article class="news__item">
         <div class="news__wrap">
@@ -111,7 +104,7 @@ $newsposts = new WP_Query( array(
 
 
       <!-- Pagination -->
-      <?php if( $newsposts->max_num_pages > 1  ) { ?>
+      <?php if( $wp_query->max_num_pages > 1  ) { ?>
       <nav class="pagination">
         <div class="nav-links">
           <?php if(  get_query_var( 'paged' ) == 0 ) { ?>
@@ -125,13 +118,13 @@ echo paginate_links( array(
   'base'    => str_replace($big, '%#%', esc_url(get_pagenum_link( $big) ) ),
 	'format' => '?paged=%#%', 
   'current' => max( 1, get_query_var( 'paged' ) ),
-	'total'   => $newsposts->max_num_pages,
+	'total'   => $wp_query->max_num_pages,
 'prev_text' => '',
 'next_text' => '',
 
 ));
 ?>
-          <?php if(  get_query_var( 'paged' ) == $newsposts->max_num_pages ) { ?>
+          <?php if(  get_query_var( 'paged' ) == $wp_query->max_num_pages ) { ?>
           <span class="next page-numbers"></span>
           <?php
 }
@@ -139,20 +132,6 @@ echo paginate_links( array(
         </div>
       </nav>
       <?php } ?>
-
-      <!-- <nav class="pagination">
-        <div class="nav-links">
-          <a href="#" class="prev page-numbers"></a>
-          <a href="#" class=" page-numbers">1</a>
-          <span href="#" class="current page-numbers">2</span>
-          <a href="#" class="page-numbers">3</a>
-          <a href="#" class="page-numbers">4</a>
-          <a href="#" class="page-numbers">5</a>
-          <span class="page-numbers page-break">...</span>
-          <a href="#" class=" page-numbers">7</a>
-          <a href="#" class="next page-numbers"></a>
-        </div>
-      </nav> -->
 
     </div>
 

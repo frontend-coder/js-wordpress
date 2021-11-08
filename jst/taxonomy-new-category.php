@@ -7,13 +7,15 @@ get_header();
 <section class="inner events">
   <div class="wrapper">
     <div class="news">
-      <h2 class="news__title secondary-title"><span>Актуальные</span><br>новости</h2>
+      <h2 class="news__title secondary-title"><span>Категория</span><br>
+        <?php echo single_term_title(); ?></h2>
       <?php
-  $paged =(get_query_var('paged')) ? get_query_var('paged') : 1;
+  $pageds =(get_query_var('paged')) ? get_query_var('paged') : 1;
 
 $newsposts = new WP_Query( array(
   'post_type' => 'news',
-  'paged' => $paged ));
+  'paged' => $pageds 
+));
 
 		if ($newsposts->have_posts() ) :
 			while ($newsposts->have_posts() ) : $newsposts->the_post(); ?>
@@ -28,8 +30,7 @@ $newsposts = new WP_Query( array(
 		//  	print_r($news_type);
 			foreach($news_type as $type) {
 				echo '<li><a href="'. get_term_link($type) .'"> '. $type->name .'</a></li>';
-				 
-			}
+		}
 			?>
               <!-- <li><a href="#">Бизнес</a></li>
               <li><a href="#">Социальная сфера</a></li> -->
@@ -97,6 +98,8 @@ $newsposts = new WP_Query( array(
         <h5 class="news__heading"><?php the_title(); ?></h5>
         <div class="news__text"><?php the_excerpt(); ?></div>
       </article><!-- End one new -->
+
+
       <?php endwhile;
     wp_reset_postdata();
 			else :

@@ -741,7 +741,9 @@ button {
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-
+.widget {
+  margin-bottom: 30px;
+}
 .widget_search {
   margin-right: 7.5%;
   width: 350px;

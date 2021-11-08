@@ -126,10 +126,12 @@ add_action( 'after_setup_theme', 'jst_content_width', 0 );
 require_once get_template_directory().'/personal-functions/metaboxes.php';
 require_once get_template_directory().'/personal-functions/add_metabox.php';
 
-
-
 require_once get_template_directory().'/personal-functions/menu-locations.php';
 require_once get_template_directory().'/personal-functions/widget-locations.php';
+require_once get_template_directory().'/personal-functions/widget-about.php';
+require_once get_template_directory().'/personal-functions/widget-custom-category.php';
+require_once get_template_directory().'/personal-functions/widget-subscribe.php';
+
 require_once get_template_directory().'/personal-functions/scripts-locations.php';
 require_once get_template_directory().'/personal-functions/breadcrumbs.php';
 require_once get_template_directory().'/personal-functions/register-post-type.php';
