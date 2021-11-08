@@ -25,15 +25,10 @@ while ( have_posts() ) : the_post();
         <?php the_title(); ?>
       </h1>
       <ul class="tags-list">
-        <!-- <li><a href="#">Судебная практика</a></li>
-        <li><a href="#">Социальная сфера</a></li> -->
-        <?php $news_type = wp_get_post_terms(get_the_ID(), 'news-category' ); 
-		//  	print_r($news_type);
-			foreach($news_type as $type) {
-				echo '<li><a href="'. get_term_link($type) .'"> '. $type->name .'</a></li>';
-				 
-			}
-			?>
+        <?php $test = wp_get_post_categories( $post->ID, array('fields' => 'all') );
+				foreach( $test as $cat ){
+	echo '<li><a href="'. get_term_link($cat) .'"> '. $cat->name .'</a></li>';
+}				?>
       </ul>
     </div>
   </div>

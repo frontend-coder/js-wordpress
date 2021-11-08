@@ -8,7 +8,7 @@ global $wp_query;
 <section class="inner events">
   <div class="wrapper">
     <div class="news">
-      <h2 class="news__title secondary-title"><span>Блог </span>
+      <h2 class="news__title secondary-title"><span>Категория</span>
         <br><?php echo single_term_title(); ?>
       </h2>
       <?php
@@ -22,10 +22,15 @@ global $wp_query;
             <?php echo get_the_post_thumbnail( get_the_ID(), 'litlenews-thumb'  ); ?>
             <!-- <img src="img/photo1.jpg" alt="Изображение"> -->
             <ul class="tags-list">
-              <?php $test = wp_get_post_categories( $post->ID, array('fields' => 'all') );
-				foreach( $test as $cat ){
-	echo '<li><a href="'. get_term_link($cat) .'"> '. $cat->name .'</a></li>';
-}				?>
+              <?php $news_type = wp_get_post_terms(get_the_ID(), 'news-category' ); 
+		//  	print_r($news_type);
+			foreach($news_type as $type) {
+				echo '<li><a href="'. get_term_link($type) .'"> '. $type->name .'</a></li>';
+				 
+			}
+			?>
+              <!-- <li><a href="#">Бизнес</a></li>
+              <li><a href="#">Социальная сфера</a></li> -->
             </ul>
           </div>
           <div class="news__side">
