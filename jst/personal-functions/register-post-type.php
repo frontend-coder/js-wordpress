@@ -239,5 +239,22 @@ if ( $jst_options['custom_news_per_page']) {
     if( !is_admin() &&  is_post_type_archive('news') ) {
         $query->set( 'posts_per_page', $posts_per_page_news);
     }
+
+
+       if( !is_admin() && is_tax('news') ) {
+        $query->set( 'posts_per_page', $posts_per_page_news);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
 }
 add_action('pre_get_posts', 'jst_posts_per_archivepage');
