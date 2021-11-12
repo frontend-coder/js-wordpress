@@ -122,6 +122,13 @@ add_action( 'after_setup_theme', 'jst_content_width', 0 );
  */
 
 
+/**
+ * Load WooCommerce compatibility file.
+ */
+if ( class_exists( 'WooCommerce' ) ) {
+	require get_template_directory() . '/inc/woocommerce.php';
+	require_once get_template_directory() . '/personal-functions/woocommerce.php';
+}
 
 require_once get_template_directory().'/personal-functions/metaboxes.php';
 require_once get_template_directory().'/personal-functions/add_metabox.php';
@@ -189,12 +196,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-/**
- * Load WooCommerce compatibility file.
- */
-if ( class_exists( 'WooCommerce' ) ) {
-	require get_template_directory() . '/inc/woocommerce.php';
-}
 
 require get_template_directory() . '/inc/optionpanel-redux.php';
 

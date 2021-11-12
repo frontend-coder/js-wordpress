@@ -8,6 +8,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 function jst_widgets_init() {
 
 	register_sidebar( array(
+			'name'          => esc_html__( 'Sidebar Shop', 'jst' ),
+			'id'            => 'sidebar-shop',
+			'description'   => esc_html__( 'Add widgets here. It displays only shop pages', 'jst' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+
+
+
+
+
+	register_sidebar( array(
 			'name'          => esc_html__( 'Sidebar Blog', 'jst' ),
 			'id'            => 'sidebar-2',
 			'description'   => esc_html__( 'Add widgets here.', 'jst' ),
