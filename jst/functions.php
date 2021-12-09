@@ -121,13 +121,14 @@ add_action( 'after_setup_theme', 'jst_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 
+ require_once get_template_directory() . '/inc/optionpanel-redux.php';
 
 /**
  * Load WooCommerce compatibility file.
  */
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
-	require_once get_template_directory() . '/personal-functions/woocommerce.php';
+	require_once get_template_directory() . '/personal-functions/personal-woocommerce.php';
 }
 
 require_once get_template_directory().'/personal-functions/metaboxes.php';
@@ -197,7 +198,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 
-require get_template_directory() . '/inc/optionpanel-redux.php';
 
 // Отключаем Гутенберг в настройке Виджетов
 add_filter( 'gutenberg_use_widgets_block_editor', '__return_false', 100 );

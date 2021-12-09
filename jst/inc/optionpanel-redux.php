@@ -261,24 +261,6 @@ $args['share_icons'][] = array(
 	'icon'  => 'el el-linkedin',
 );
 
-// Panel Intro text -> before the form.
-/*
-if ( ! isset( $args['global_variable'] ) || false !== $args['global_variable'] ) {
-	if ( ! empty( $args['global_variable'] ) ) {
-		$v = $args['global_variable'];
-	} else {
-		$v = str_replace( '-', '_', $args['opt_name'] );
-	}
-
-	// translators:  Panel opt_name.
-	$args['intro_text'] = '<p>' . sprintf( esc_html__( 'Did you know that Redux sets a global variable for you? To access any of your saved options from within your code you can use your global variable: $%1$s', 'your-textdomain-here' ), '<strong>' . $v . '</strong>' ) . '<p>';
-} else {
-	$args['intro_text'] = '<p>' . esc_html__( 'This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.', 'your-textdomain-here' ) . '</p>';
-}
-
-*/
-// Add content after the form.
-// $args['footer_text'] = '<p>' . esc_html__( 'This text is displayed below the options panel. It isn\'t required, but more info is always better! The footer_text field accepts all HTML.', 'your-textdomain-here' ) . '</p>';
 
  Redux::set_args( $opt_name, $args );
 
@@ -341,8 +323,8 @@ Redux::set_section(
 		'fields'           => array(
 
 			array(
-				'id'       => 'global_sortable',
-				'type'     => 'sortable',
+				'id'       => 'global_sortable1',
+			'type'     => 'sortable',
 				'title'    => esc_html__( 'Social networks', 'jst' ),
 				'subtitle' => esc_html__( 'Define the placement of the referenced block by dragging and dropping the blocks.', 'jst' ),
 				'desc'     => esc_html__( 'Let the field empty if you don\'t have a link of social network.', 'jst' ),
@@ -555,6 +537,47 @@ Redux::set_section(
 	)
 );
 
+Redux::set_section(
+	$opt_name,
+	array(
+		'title'            => esc_html__( 'Shop Options', 'jst' ),
+		'desc'             => esc_html__( 'Enter informations for shop pages.', 'jst' ), 
+		'id'               => 'custom_for_shops',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+
+			array(
+				'id'       => 'custom_shoppage_pics',
+				'type'         => 'media',
+				'url'          => true,
+				'title'        => esc_html__( 'Upload foto for header shop page fon', 'jst' ),
+				'compiler'     => 'true',
+				'desc'         => esc_html__( 'Basic size media must be 1920px X 630 px.', 'jst' ),
+				'subtitle'     => esc_html__( 'Upload any media using the WordPress native uploader', 'jst' ),
+				'preview_size' => 'full',
+			),
+
+						array(
+				'id'       => 'custom_shoppage_titles',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Enter title for header shop page', 'jst' ),
+				'default'  => 'Новая коллекция 2018',
+
+			),
+
+
+
+			array(
+				'id'       => 'custom_shoppage_descrs',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Enter descr for header shop page', 'jst' ),
+				'default'  => 'для настоящих мужчин'
+			),
+	
+		),
+	)
+);
 
 
 
@@ -808,11 +831,12 @@ if ( class_exists( 'Redux_Pro' ) ) {
 /**
  * Metaboxes
  */
-require_once Redux_Core::$dir . '../sample/metaboxes.php';
+
+ // require_once Redux_Core::$dir . '../sample/metaboxes.php';
 
 /**
  * Raw README
- */
+ */  /*
 if ( file_exists( $dir . '/../README.md' ) ) {
 	$section = array(
 		'icon'   => 'el el-list-alt',
@@ -855,6 +879,7 @@ Redux::set_section(
 		),
 	)
 );
+*/
 
 /*
  * <--- END SECTIONS

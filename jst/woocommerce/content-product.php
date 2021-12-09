@@ -24,12 +24,13 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( '', $product ); ?>>
-	<?php
+<div <?php wc_product_class( 'products__item', $product ); ?>>
+  <?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
 	 *
 	 * @hooked woocommerce_template_loop_product_link_open - 10
+	 * 'jst_addwrap_product_image', 5
 	 */
 	do_action( 'woocommerce_before_shop_loop_item' );
 
@@ -64,4 +65,4 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	 */
 	do_action( 'woocommerce_after_shop_loop_item' );
 	?>
-</li>
+</div>

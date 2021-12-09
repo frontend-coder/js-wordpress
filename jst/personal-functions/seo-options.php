@@ -10,9 +10,9 @@ function remove_canonical() {
         add_filter( 'wpseo_canonical', '__return_false',  10, 1 );
     }
     // Disable for 'shop' page
-    if ( is_shop() ) {
-        add_filter( 'wpseo_canonical', '__return_false',  10, 1 );
-    }
+    // if ( is_shop() ) {
+    //     add_filter( 'wpseo_canonical', '__return_false',  10, 1 );
+    // }
 }
 add_action('wp', 'remove_canonical');
 
@@ -25,9 +25,9 @@ function uncode_nocanonical() {
 if ( is_post_type_archive( 'recall' ) ) {
 		echo '<link rel="canonical" href="http://js.local/recall/" />'."\n";
 	}
-	if ( is_shop() ) {
-		echo '<link rel="canonical" href="http://js.local/shop/" />'."\n";
-	}
+	// if ( is_shop() ) {
+	// 	echo '<link rel="canonical" href="http://js.local/shop/" />'."\n";
+	// }
 }
 
 

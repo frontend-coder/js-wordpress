@@ -97,7 +97,33 @@ function  jst_metaboxes($meta_boxes) {
     );
 
 
+ $meta_boxes[] = array(
+        'id'         => 'product__stutus',
+        'title'      => 'Stutus Product',
+        'pages'      => array( 'product', ), // Post type
+        'context'    => 'normal',
+        'priority'   => 'high',
+        'show_names' => true, // Show field names on the left
+  //    'show_on'    => array( 'key' => 'page-template', 'value' => array('template-order.php'), ), 
+        'fields' => array(
+            array(
+                'name' => 'Текст кнопки',
+                'desc' => 'Укажите текст для вывода в качестве надписи в кнопке',
+                'id'   => $prefix . 'product__stutus_title',
+                'type' => 'text',
+            ),
 
+            array(
+                'name' => 'Цвет кнопки',
+                'desc' => 'Выберите цвет для окрашивания фона кнопки',
+                'id'   => $prefix . 'product__stutus_color',
+                'type' => 'text',
+            ),
+
+
+
+        )
+    );
 
 
 

@@ -6717,7 +6717,7 @@ button {
   font-size: 20px;
 }
 
-.market__show {
+.market__show, .woocommerce-result-count {
   color: #858585;
   font-size: 14px;
 }
@@ -6737,7 +6737,7 @@ button {
   margin-right: -25px;
 }
 
-.products .discount,
+.products .discounter,
 .products .new-item {
   position: absolute;
   left: 21px;
@@ -6753,9 +6753,13 @@ button {
   line-height: 28px;
 }
 
+
+.products .discounter{
+  display: block;
+} 
 .products .price__old,
 .products .rate {
-  display: none;
+ // display: none;
 }
 
 .products .rate {
@@ -6770,7 +6774,13 @@ button {
   background-image: linear-gradient(to right, #fd5163 0%, #fe384d 100%);
   font-size: 13px;
 }
+.products .attantion {
 
+  background-color: #4aff86;
+  background-image: -webkit-linear-gradient(left, #fd5163 0%, #4aff86 100%);
+  background-image: linear-gradient(to right, #fd5163 0%, #4aff86 100%);
+
+}
 .products .new-item {
   font-size: 11px;
   background-color: #53ddb8;
@@ -6804,19 +6814,36 @@ button {
 .products__item.sale .price {
   margin-right: 25px;
 }
-
+.products__item del,
 .products__item.sale .price__old {
   text-decoration: line-through;
   font-size: 14px;
   margin-right: 10px;
 }
+.star-rating span::before {
+color:#ffcc00!important;
+}
+.star-rating::after {
+color:#ffcc00!important;
+}
 
+
+.woocommerce .star-rating {
+  width: 3.4em!important;
+  height: .8em!important ;
+}
+.woocommerce .star-rating::before, 
+.woocommerce .star-rating span, 
+.woocommerce .star-rating::after  {
+font-size: 11px !important;
+}
+.products__item ins,
 .products__item.sale .price__now {
   color: #00b8ff;
   font-size: 18px;
   font-weight: 600;
 }
-
+.products__item del,
 .products__item.sale span.discount,
 .products__item.sale .price__old,
 .products__item.sale .rate {
@@ -6858,6 +6885,7 @@ button {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 .products__name {
@@ -6927,6 +6955,12 @@ button {
 .products .pagination {
   width: 100%;
   margin-left: 0;
+  height: 48px;
+    background-color: #fff;
+    border-radius: 8px 5px 5px;
+    box-shadow: 0 5px 20px rgb(206 218 228 / 41%);
+    max-width: 1035px;
+    margin-left: 0;
 }
 
 /* List/grid */
